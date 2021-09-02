@@ -10,29 +10,34 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
-@Table(name = "tb_categoria")
-public class Categoria {
-
+@Table(name = "tb_usuario")
+public class Usuario {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id; 
 	
 	@NotNull
-	private String embalagens;
+	@Size(min = 5, max = 255, message = "Usuário é obrigatório!")
+	private String nome;
 	
 	@NotNull
-	private String material;
+	@Size(min = 5, max = 255, message = "Email é obrigatório!")
+	private String email;
 	
-	private boolean ativo;
+	@NotNull
+	@Size(min = 5, max = 255, message = "Senha é obrigatório!")
+	private String senha;
 	
-	@OneToMany(mappedBy ="categoria", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("categoria")	
+	@OneToMany(mappedBy ="usuario", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("usuario")	
 	private List<Produto> produto;
-	
+
 	public long getId() {
 		return id;
 	}
@@ -41,28 +46,28 @@ public class Categoria {
 		this.id = id;
 	}
 
-	public String getEmbalagens() {
-		return embalagens;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setEmbalagens(String embalagens) {
-		this.embalagens = embalagens;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getMaterial() {
-		return material;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setMaterial(String material) {
-		this.material = material;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public boolean isAtivo() {
-		return ativo;
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public List<Produto> getProduto() {
