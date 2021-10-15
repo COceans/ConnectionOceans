@@ -32,6 +32,17 @@ public class Produto {
 	@NotNull
 	private int unidade;
 	
+	private String imagem;
+	
+	
+	public String getImagem() {
+		return imagem;
+	}
+
+	public void setImagem(String imagem) {
+		this.imagem = imagem;
+	}
+
 	@ManyToOne
 	@JsonIgnoreProperties("produto")	
 	private Categoria categoria;
